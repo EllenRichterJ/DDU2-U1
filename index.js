@@ -40,6 +40,47 @@ function findCity() {
     }
 } findCity();
 
+function createDistanceTable() {
+    const tableContainer = document.getElementById("table");
+    tableContainer.innerHTML = ''; // Rensa tidigare innehåll i tabellcontainern
+
+    const table = document.createElement("table");
+    const headerRow = document.createElement("tr");
+
+    const headerCity1 = document.createElement("th");
+    headerCity1.textContent = "Från stad";
+
+    const headerCity2 = document.createElement("th");
+    headerCity2.textContent = "Till stad";
+
+    const headerDistance = document.createElement("th");
+    headerDistance.textContent = "Avstånd (mil)";
+
+    headerRow.append(headerCity1, headerCity2, headerDistance);
+    table.appendChild(headerRow);
+
+    distances.forEach(distance => {
+        const row = document.createElement("tr"); // Skapar en ny rad för varje distans
+
+        const fromCity = cities[distance.city1].name;
+        const toCity = cities[distance.city2].name;
+        const dist = distance.distance; // Hämtar själva avståndet
+
+        const fromCell = document.createElement("td");
+        fromCell.textContent = fromCity;
+
+        const toCell = document.createElement("td");
+        toCell.textContent = toCity;
+
+        const distanceCell = document.createElement("td");
+        distanceCell.textContent = dist;
+
+        row.append(fromCell, toCell, distanceCell);
+        table.appendChild(row);
+    });
+    tableContainer.appendChild(table);
+} createDistanceTable();
+
 // Recommended: constants with references to existing HTML-elements
 
 // Recommended: Ask for the city name and then the rest of the code
