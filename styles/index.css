@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: skyblue;
+  background-color: #ffe6e2;
   margin: 20px;
 }
 
@@ -23,17 +23,32 @@ body {
   border-radius: 5px;
 }
 
-#cities .target, #cities .closest, #cities .furthest { color: white }
-#cities .target { background-color: black; }
-#cities .closest { background-color: green;}
-#cities .furthest { background-color: blue; }
+#cities .target,
+#cities .closest,
+#cities .furthest {
+  color: white
+}
+
+#cities .target {
+  background-color: #fdc6cb;
+}
+
+#cities .closest {
+  background-color: #fbb285;
+}
+
+#cities .furthest {
+  background-color: #fccd86;
+}
 
 h1 {
   text-align: center;
   margin: 20px 0;
 }
 
-h2, h3, p {
+h2,
+h3,
+p {
   text-align: center;
 }
 
@@ -58,7 +73,7 @@ main {
   min-width: 900px;
   max-width: 1300px;
   margin: auto;
-  background-color: aliceblue;
+  background-color: #fffaf1;
   border-radius: 20px;
   padding: 20px;
 }
@@ -78,7 +93,8 @@ main {
   text-align: center;
 }
 
-#table .head_row, #table .head_column {
+#table .head_row,
+#table .head_column {
   font-size: var(--fsz);
   font-weight: bold;
 }
