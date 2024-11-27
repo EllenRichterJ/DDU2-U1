@@ -32,12 +32,17 @@ function findCity() {
             document.querySelector("h2").textContent = `${cities[i].name} (${cities[i].country})`;
             cityDivs[i].classList.add("target"); // Markera den hittade staden
             cityFound = true;
+
+            document.title = cities[i].name;
+
             break;
         }
     }
 
     if (!cityFound) {
         document.querySelector("h2").textContent = `${cityFinder} finns inte i databasen.`;
+
+        document.title = "Not Found";
     }
 
     // Hitta och markera den närmaste och längst bort staden
