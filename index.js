@@ -45,13 +45,50 @@ function findCity() {
 }
 findCity();
 
+function findNearestAndFarthestCity(cityFinder) {
+    let minDistance = Infinity;
+    let closestCityIndex = -1;
+    let maxDistance = 0;
+    let farthestCityIndex = -1;
 
-        const fromCity = cities[distance.city1].name;
-        const toCity = cities[distance.city2].name;
-        const dist = distance.distance; // Hämtar själva avståndet
+    // Loopa genom alla avstånd
+    for (let i = 0; i < distances.length; i++) {
+        // Hitta avståndet till den angivna staden
+        if (cityFinder === cities[distances[i].city1].name || cityFinder === cities[distances[i].city2].name) {
+            let otherCity = (cityFinder === cities[distances[i].city1].name) ? distances[i].city2 : distances[i].city1;
 
-        const fromCell = document.createElement("td");
-        fromCell.textContent = fromCity;
+            // Kolla om denna stad är närmare
+            if (distances[i].distance < minDistance) {
+                minDistance = distances[i].distance;
+                closestCityIndex = otherCity;
+            }
+
+            // Kolla om denna stad är längre bort
+            if (distances[i].distance > maxDistance) {
+                maxDistance = distances[i].distance;
+                farthestCityIndex = otherCity;
+            }
+        }
+    }
+
+    // Markera den närmaste staden
+    if (closestCityIndex !== -1) {
+        const cityDivs = document.querySelectorAll(".cityBox");
+        cityDivs[closestCityIndex].classList.add("closest");
+        let divied = minDistance / 10; // Omvandla avståndet till mil (om nödvändigt)
+        cityDivs[closestCityIndex].textContent = `${cities[closestCityIndex].name} ${divied} mil bort`;
+        document.getElementById("closest").textContent = `${cities[closestCityIndex].name}`;
+    }
+
+    // Markera den längst bort staden
+    if (farthestCityIndex !== -1) {
+        const cityDivs = document.querySelectorAll(".cityBox");
+        cityDivs[farthestCityIndex].classList.add("furthest");
+        let divied = maxDistance / 10; // Omvandla avståndet till mil (om nödvändigt)
+        cityDivs[farthestCityIndex].textContent = `${cities[farthestCityIndex].name} ${divied} mil bort`;
+        document.getElementById("furthest").textContent = `${cities[farthestCityIndex].name}`;
+    }
+}
 
         const toCell = document.createElement("td");
         toCell.textContent = toCity;
