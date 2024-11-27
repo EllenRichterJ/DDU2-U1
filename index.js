@@ -92,15 +92,37 @@ function findNearestAndFarthestCity(cityFinder) {
 
         const toCell = document.createElement("td");
         toCell.textContent = toCity;
+function createDistanceTable() {
+    const tableContainer = document.getElementById("table");
+    tableContainer.innerHTML = ''; // Rensa tidigare innehåll i tabellcontainern
 
-        const distanceCell = document.createElement("td");
-        distanceCell.textContent = dist;
+    const numberOfCities = 39;
 
-        row.append(fromCell, toCell, distanceCell);
-        table.appendChild(row);
-    });
-    tableContainer.appendChild(table);
-} createDistanceTable();
+
+    // Skapa rubrik för kolumn 0 (övre vänstra hörnet)
+    const emptyHeader = document.createElement("div");
+    emptyHeader.textContent = "";
+    tableContainer.appendChild(emptyHeader);
+
+    // Skapa rubrikraden med stadsnummer
+    for (let i = 0; i < numberOfCities; i++) {
+        const cityHeader = document.createElement("div");
+        cityHeader.textContent = i;
+        tableContainer.appendChild(cityHeader);
+    }
+
+    // Fyll i resten av tabellen med avståndsdata
+    for (let row = 0; row < numberOfCities; row++) {
+        const rowHeader = document.createElement("div");
+        rowHeader.textContent = `${row}-${cities[row].name}`;
+        tableContainer.appendChild(rowHeader);
+
+
+            tableContainer.appendChild(distanceCell);
+        }
+    }
+}
+createDistanceTable();
 
 // Recommended: constants with references to existing HTML-elements
 
