@@ -123,6 +123,26 @@ function createDistanceTable() {
         rowHeader.textContent = `${row}-${cities[row].name}`;
         tableContainer.appendChild(rowHeader);
 
+        for (let col = 0; col < numberOfCities; col++) {
+            const distanceCell = document.createElement("div");
+            distanceCell.classList.add("cell");
+
+            // Bestäm om kolumnen är jämn eller udda
+            const isEvenCol = col % 2 === 0;
+
+            // Om kolumnen är jämn, ge cellen en bakgrundsfärg
+            if (isEvenCol) {
+                distanceCell.style.backgroundColor = "#ffe6e2"; // Eller vilken färg du vill
+            }
+
+            if (row === col) {
+                distanceCell.textContent = " "; // Avstånd till sig själv
+            } else {
+                const distance = distances.find(
+                    (d) => (d.city1 === row && d.city2 === col) || (d.city1 === col && d.city2 === row)
+                );
+                distanceCell.textContent = distance ? distance.distance : ""; // Fyll i avståndet eller lämna tomt
+            }
 
             tableContainer.appendChild(distanceCell);
         }
