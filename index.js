@@ -26,7 +26,7 @@ function findCity() {
     });
 
     for (let i = 0; i < cities.length; i++) {
-        if (cityFinder.toLowerCase() === cities[i].name.toLowerCase()) {
+        if (cityFinder === cities[i].name) {
             document.querySelector("h2").textContent = `${cities[i].name} (${cities[i].country})`;
             cityDivs[i].classList.add("target");
             cityFound = true;
