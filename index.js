@@ -24,12 +24,15 @@ function findCity() {
 
     const cityDivs = document.querySelectorAll(".cityBox");
 
-    cityDivs.forEach(cityDiv => cityDiv.classList.remove("target"));
+    // Ta bort "target", "furthest", och "closest" klasser från alla tidigare valda städer
+    cityDivs.forEach(cityDiv => {
+        cityDiv.classList.remove("target", "furthest", "closest");
+    });
 
     for (let i = 0; i < cities.length; i++) {
         if (cityFinder.toLowerCase() === cities[i].name.toLowerCase()) {
             document.querySelector("h2").textContent = `${cities[i].name} (${cities[i].country})`;
-            cityDivs[i].classList.add("target");
+            cityDivs[i].classList.add("target"); // Markera den hittade staden
             cityFound = true;
             break;
         }
@@ -38,29 +41,12 @@ function findCity() {
     if (!cityFound) {
         document.querySelector("h2").textContent = `${cityFinder} finns inte i databasen.`;
     }
-} findCity();
 
-function createDistanceTable() {
-    const tableContainer = document.getElementById("table");
-    tableContainer.innerHTML = ''; // Rensa tidigare innehåll i tabellcontainern
+    // Hitta och markera den närmaste och längst bort staden
+    findNearestAndFarthestCity(cityFinder);
+}
+findCity();
 
-    const table = document.createElement("table");
-    const headerRow = document.createElement("tr");
-
-    const headerCity1 = document.createElement("th");
-    headerCity1.textContent = "Från stad";
-
-    const headerCity2 = document.createElement("th");
-    headerCity2.textContent = "Till stad";
-
-    const headerDistance = document.createElement("th");
-    headerDistance.textContent = "Avstånd (mil)";
-
-    headerRow.append(headerCity1, headerCity2, headerDistance);
-    table.appendChild(headerRow);
-
-    distances.forEach(distance => {
-        const row = document.createElement("tr"); // Skapar en ny rad för varje distans
 
         const fromCity = cities[distance.city1].name;
         const toCity = cities[distance.city2].name;
