@@ -11,12 +11,10 @@ function displayAllCities() {
     citiesContainer.innerHTML = '';  // Tömmer containern innan nya städer läggs till
 
     for (let i = 0; i < cities.length; i++) {
-        const cityBoxDiv = document.createElement("div");
-        cityBoxDiv.classList.add("cityBox");
-        cityBoxDiv.textContent = cities[i].name;
-        citiesContainer.appendChild(cityBoxDiv);
+        createCityBox(cities[i].name); // Använd den existerande funktionen
     }
-} displayAllCities();
+}
+displayAllCities();
 
 function findCity() {
     const cityFinder = prompt("Vilken stad söker du?");
